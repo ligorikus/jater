@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <main>
     <div v-if="isAuthenticated">
-      <h1>Welcome to Jater!</h1>
+
     </div>
-  </div>
+  </main>
 </template>
 
 <style>

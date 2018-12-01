@@ -18,8 +18,8 @@
     name: 'login',
     data () {
       return {
-        email: 'admin@admin.com',
-        password: 'admin',
+        email: '',
+        password: '',
       }
     },
     methods: {

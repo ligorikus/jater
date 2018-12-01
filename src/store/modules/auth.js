@@ -21,7 +21,6 @@ const actions = {
       apiCall('auth/login', 'POST', {data: user})
         .then(resp => {
           localStorage.setItem('user-token', resp.access_token);
-
           axios.defaults.headers.common['Authorization'] = resp.access_token;
           commit(AUTH_SUCCESS, resp);
           resolve(resp)
