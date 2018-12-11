@@ -1,26 +1,26 @@
-import { CATEGORIES_ALL } from '../actions/categories'
+import { USER_ME } from '../actions/user'
 import apiCall from '../../utils/api'
 
 const state = {
-  categories: [],
+  user: Object
 };
 
 const getters = {
-  getCategories() {
-    return state.categories
+  getUser() {
+    return state.user;
   }
 };
 
 const actions = {
-  [CATEGORIES_ALL]: ({commit, dispatch}) => {
+  [USER_ME]: ({commit, dispatch}) => {
     return new Promise((resolve, reject) => {
-      apiCall('categories', 'GET', {})
+      apiCall('me', 'GET', {})
         .then(resp => {
-          commit(CATEGORIES_ALL, resp);
+          commit(USER_ME, resp);
           resolve(resp);
         })
         .catch(err => {
-          commit(CATEGORIES_ALL, err);
+          commit(USER_ME, err);
           reject(err)
         })
     })
@@ -28,8 +28,8 @@ const actions = {
 };
 
 const mutations = {
-  [CATEGORIES_ALL]: (state, resp) => {
-    state.categories = resp.categories
+  [USER_ME]: (state, resp) => {
+    state.user = resp
   }
 };
 

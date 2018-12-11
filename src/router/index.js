@@ -29,7 +29,6 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
-      beforeEnter: ifAuthenticated,
     },
     {
       path: '/login',

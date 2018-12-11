@@ -3,11 +3,11 @@
     <div class="header__profile_block" v-if="isAuthenticated">
       <img src="https://via.placeholder.com/75" alt="" class="header__avatar_img"/>
       <div class="header__username">
-        Alexey Semenov
+        {{ user.name }}
       </div>
     </div>
     <div v-if="!isAuthenticated"></div>
-    <div class="header__menu_button" @click="getCategories">
+    <div class="header__menu_button">
       <i class="fas fa-bars header__menu_icon"></i>
     </div>
   </div>
@@ -16,21 +16,27 @@
 <script>
     import { mapGetters } from 'vuex'
     import {CATEGORIES_ALL} from '../../store/actions/categories'
+    import {USER_ME} from '../../store/actions/user'
     export default {
       name: "header-view",
       data () {
         return {
         }
       },
+      created() {
+        this.$store.dispatch(USER_ME);
+        this.$store.dispatch(CATEGORIES_ALL);
+      },
       computed: {
+        categories() {
+          return this.$store.getters.getCategories
+        },
+        user() {
+          return this.$store.getters.getUser
+        },
         ...mapGetters(['isAuthenticated']),
       },
       methods: {
-        getCategories: function () {
-          this.$store.dispatch(CATEGORIES_ALL, {}).then((response) => {
-            console.log(response);
-          })
-        }
       }
     }
 </script>
