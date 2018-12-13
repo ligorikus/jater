@@ -24,7 +24,9 @@
         }
       },
       created() {
-        this.$store.dispatch(USER_ME);
+        if (this.$store.getters.isAuthenticated) {
+          this.$store.dispatch(USER_ME);
+        }
         this.$store.dispatch(CATEGORIES_ALL);
       },
       computed: {

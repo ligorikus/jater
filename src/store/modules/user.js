@@ -2,7 +2,7 @@ import { USER_ME } from '../actions/user'
 import apiCall from '../../utils/api'
 
 const state = {
-  user: Object
+  user: ''
 };
 
 const getters = {

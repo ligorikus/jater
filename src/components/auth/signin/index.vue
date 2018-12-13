@@ -1,21 +1,23 @@
 <template>
-  <div>
-    <form class="login" @submit.prevent="login">
+  <main>
+    <form class="signin" @keyup.enter="signin" @submit.prevent="signin">
       <h1>Sign in</h1>
       <label>User name</label>
       <input required v-model="email" type="text" placeholder="admin@admin.com"/>
       <label>Password</label>
       <input required v-model="password" type="password" placeholder="admin"/>
       <hr/>
-      <button type="submit">Login</button>
+      <button type="submit">Sign in</button>
     </form>
-  </div>
+  </main>
 </template>
 
 <script>
-  import {AUTH_REQUEST} from '../../store/actions/auth'
+  import {AUTH_REQUEST} from '../../../store/actions/auth'
+  import { USER_ME } from "../../../store/actions/user";
+
   export default {
-    name: 'login',
+    name: 'sign-in',
     data () {
       return {
         email: '',
@@ -23,10 +25,12 @@
       }
     },
     methods: {
-      login: function () {
+      signin: function () {
         const { email, password } = this;
         this.$store.dispatch(AUTH_REQUEST, { email, password }).then(() => {
-          this.$router.push('/')
+          this.$router.push('/');
+        }).then(() => {
+          this.$store.dispatch(USER_ME);
         })
       }
     },
@@ -34,7 +38,7 @@
 </script>
 
 <style>
-  .login {
+  .signin {
     display: flex;
     flex-direction: column;
     width: 300px;

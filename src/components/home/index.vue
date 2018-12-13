@@ -8,6 +8,7 @@
         </div>
       </form>
     </div>
+    <create-product-button></create-product-button>
   </main>
 </template>
 
@@ -18,10 +19,6 @@
     display: flex;
     flex-direction: column;
   }
-  form {
-    height: 39px;
-  }
-
   .search__form {
     display: -webkit-flex;
     display: -moz-flex;
@@ -44,6 +41,7 @@
     padding: 13px;
     display: flex;
     height: 18px;
+    background: #ddd;
   }
   .search__text_input {
     position: absolute;
@@ -55,16 +53,10 @@
     margin: 0;
     width: 100%;
     box-sizing: border-box;
-    padding: 0 30px;
+    padding: 0 40px 0 18px;
     font-size: 16px;
     outline: none;
   }
-
-  #search__text_input::placeholder {
-    visibility: inherit;
-
-  }
-
   .search__button {
     color: black;
     display: block;
@@ -75,8 +67,12 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import CreateProductButton from '../products/create/product-button'
   export default {
     name: 'home',
+    components: {
+      CreateProductButton
+    },
     computed: {
 
     },

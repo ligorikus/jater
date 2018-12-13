@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { AUTH_REQUEST, AUTH_ERROR, AUTH_SUCCESS, AUTH_LOGOUT } from '../actions/auth'
 import apiCall from '../../utils/api'
+import {USER_ME} from "../actions/user";
+import Vue from "vue";
 
 //apiCall('categories/2', 'post', {data: {'cat': 3}}).then(resp => console.log(resp));
 const state = {
@@ -18,7 +20,7 @@ const actions = {
   [AUTH_REQUEST]: ({commit, dispatch}, user) => {
     return new Promise((resolve, reject) => {
       commit(AUTH_REQUEST);
-      apiCall('auth/login', 'POST', {data: user})
+      apiCall('auth/signin', 'POST', {data: user})
         .then(resp => {
           localStorage.setItem('user-token', resp.access_token);
           commit(AUTH_SUCCESS, resp);
@@ -47,8 +49,8 @@ const mutations = {
   [AUTH_SUCCESS]: (state, resp) => {
     state.status = 'success';
     state.token = resp.access_token;
-    state.hasLoadedOnce = true
-    axios.defaults.headers.common['Authorization'] = resp.access_token;
+    state.hasLoadedOnce = true;
+    Vue.prototype.$http.defaults.headers.common['Authorization'] = 'Bearer ' + resp.access_token
   },
   [AUTH_ERROR]: (state) => {
     state.status = 'error';
