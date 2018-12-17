@@ -6,7 +6,10 @@
         {{ user.name }}
       </div>
     </div>
-    <div v-if="!isAuthenticated"></div>
+    <nav v-if="!isAuthenticated">
+      <router-link tag="div" class="nav__elem" to="/signin">Sign In</router-link>
+      <router-link tag="div" class="nav__elem" to="/signup">Sign Up</router-link>
+    </nav>
     <div class="header__menu_button">
       <i class="fas fa-bars header__menu_icon"></i>
     </div>
@@ -87,4 +90,17 @@
   .header__menu_icon {
     font-size: 28px;
   }
+
+  nav {
+    display: flex;
+  }
+  .nav__elem {
+    text-align: center;
+    height: 60%;
+    width: 100px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+    vertical-align: bottom;
+    cursor: pointer;
+  }
+
 </style>

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import auth from './modules/auth'
 import categories from './modules/categories'
 import user from './modules/user'
+import products from './modules/products'
 import axios from 'axios'
 
 Vue.prototype.$http = axios;
@@ -19,7 +20,8 @@ export default new Vuex.Store({
   modules: {
     auth,
     categories,
-    user
+    user,
+    products
   },
   strict: debug
 });

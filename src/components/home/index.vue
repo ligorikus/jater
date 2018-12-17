@@ -1,9 +1,9 @@
 <template>
   <main>
     <div class="search__form">
-      <form action="">
+      <form @keyup.enter="search" @submit.prevent="">
         <div class="search__text">
-          <input class="search__text_input" type="text" aria-hidden="true" tabindex="-1" placeholder="Type to search">
+          <input class="search__text_input" type="text" aria-hidden="true" tabindex="-1" placeholder="Type to search" v-model="query">
           <a href="#" class="search__button"><i class="fas fa-search"></i></a>
         </div>
       </form>
@@ -68,6 +68,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import CreateProductButton from '../products/create/product-button'
+  import {PRODUCTS_SEARCH} from "../../store/actions/products";
   export default {
     name: 'home',
     components: {
@@ -78,7 +79,16 @@
     },
     data () {
       return {
+        query: ''
       }
     },
+    methods: {
+      search: function () {
+        const query = this.query;
+        this.$store.dispatch(PRODUCTS_SEARCH, {query}).then(() => {
+
+        })
+      }
+    }
   }
 </script>

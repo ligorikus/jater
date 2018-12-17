@@ -3,9 +3,9 @@
     <form class="signin" @keyup.enter="signin" @submit.prevent="signin">
       <h1>Sign in</h1>
       <label>User name</label>
-      <input required v-model="email" type="text" placeholder="admin@admin.com"/>
+      <input required v-model="email" name="email" type="text" placeholder="admin@admin.com"/>
       <label>Password</label>
-      <input required v-model="password" type="password" placeholder="admin"/>
+      <input required v-model="password" name="password" type="password" placeholder="admin"/>
       <hr/>
       <button type="submit">Sign in</button>
     </form>
@@ -28,9 +28,8 @@
       signin: function () {
         const { email, password } = this;
         this.$store.dispatch(AUTH_REQUEST, { email, password }).then(() => {
-          this.$router.push('/');
-        }).then(() => {
           this.$store.dispatch(USER_ME);
+          this.$router.push('/');
         })
       }
     },

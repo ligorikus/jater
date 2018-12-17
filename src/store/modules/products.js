@@ -3,7 +3,8 @@ import {
   PRODUCTS_PRODUCT,
   PRODUCTS_STORE,
   PRODUCTS_UPDATE,
-  PRODUCTS_DESTROY
+  PRODUCTS_DESTROY,
+  PRODUCTS_SEARCH
 } from '../actions/products'
 
 import apiCall from '../../utils/api'
@@ -39,6 +40,11 @@ const actions = {
 
     })
   },
+  [PRODUCTS_SEARCH]: ({commit, dispatch}, query) => {
+    return new Promise((resolve, reject) => {
+
+    })
+  }
 };
 
 const mutations = {
